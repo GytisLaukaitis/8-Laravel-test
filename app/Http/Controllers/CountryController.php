@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CountryController extends Controller
 {
@@ -38,9 +39,17 @@ class CountryController extends Controller
         $country = new Country();
         // can be used for seeing the insides of the incoming request
         // var_dump($request->all()); die();
+        if($request['title'] === null) {
+            return Redirect::back()->withErrors(['Privaloma įvesti šalies pavadinimą!']);
+        } else if($request['distance'] === null) {
+            return Redirect::back()->withErrors(['Privaloma įvesti atstumą iki šalies!']);
+        } else if($request['description'] === null) {
+            return Redirect::back()->withErrors(['Privalomas šalies aprašas!']);
+         } else {
         $country->fill($request->all());
         $country->save();
         return redirect()->route('country.index');
+        }
     }
 
     /**
@@ -74,9 +83,10 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
+        
         $country->fill($request->all());
         $country->save();
-        return redirect()->route('countries.index');
+        return redirect()->route('country.index');
     }
 
     /**

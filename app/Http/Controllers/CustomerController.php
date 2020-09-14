@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 
 class CustomerController extends Controller{
@@ -23,10 +24,25 @@ class CustomerController extends Controller{
         $customer = new Customer();
         // can be used for seeing the insides of the incoming request
         // var_dump($request->all()); die();
+
+        if($request['name'] === null) {
+            return Redirect::back()->withErrors(['Privaloma įvesti vartotojo vardą!']);
+        } else if($request['surname'] === null) {
+            return Redirect::back()->withErrors(['Privaloma įvesti vartotojo pavardę!']);
+        } else if($request['email'] === null) {
+            return Redirect::back()->withErrors(['Privaloma įvesti vartotojo el.paštą!']);
+         } else if($request['phone'] === null) {
+            return Redirect::back()->withErrors(['Privaloma įvesti vartotojo telefono numerį!']);
+         } else if($request['country_id'] === null) {
+            return Redirect::back()->withErrors(['Privaloma priskirti vartotojui šal!']);
+         }else {
         $customer->fill($request->all());
         $customer->save();
         return redirect()->route('customers.index');
+         }
     }
+
+
     public function show(Customer $customer){
         //
     }
