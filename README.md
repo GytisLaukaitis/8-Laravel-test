@@ -7,13 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## About project
+
+<p>I created this project to test laravel 8 features (and bugs hopefully).It is a simple CRUD application demonstrating one to many relationship in database</p>
+
 ## Usage
 
-1. Deploy project to your local server direcory (example Ammpps/www). So open gitbash here.
+1. Deploy project to your local server direcory (example Ampps/www). So open gitbash here.
 2. Clone code with command: git clone https://github.com/GytisLaukaitis/8-Laravel-test.git
 3. Next command: composer require laravel/ui
 4. Install npm with command: npm install && npm run dev
-5. Create empty database and create .env file. Copy paste content from example.env file and change database name and password.
+5. Create empty database and create .env file. Copy and paste content from example.env file and change database name and password.
 6. Run command: php artisan migrate:fresh --seed
 7. Open public folder
 8. If laravel asks, generate project key.
